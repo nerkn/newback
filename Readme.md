@@ -58,14 +58,14 @@ Spin up docker with connections params, and start using
 
 
 ## Insert cake into `products`
-POST {{netback}}/Pages
-content-type: application/json
-{ 
-    "name":"cake",
-    "category":"not icecream",
-    "price":15,
-    "unknown fields":"ommitted but included in return" 
-}
+> POST {{netback}}/Pages
+> content-type: application/json
+> { 
+>    "name":"cake",
+>    "category":"not icecream",
+>    "price":15,
+>    "unknown fields":"ommitted but included in return" 
+> }
 
 ## Update cake  `products`
 POST {{netback}}/Pages
