@@ -1,0 +1,86 @@
+@base = http://localhost:5167/api/v1
+@authbase = http://localhost:5167/auth/v1
+
+GET {{base}}/Tables
+###
+GET {{base}}/User
+###
+GET {{base}}/User/2
+###
+GET {{base}}/User?where=id,eq,2|email,eq,erkintek@gmail.com
+###
+GET {{base}}/User?where=id,in,1;2;3
+###
+GET {{base}}/User?where=email,like,er%
+###
+GET {{base}}/User?where=email,osman,er%
+###
+GET {{base}}/User?where=id%2Ceq%2C12%7Cemail%2Ceq%2Cerkintek%40gmail.com&where=34
+
+###
+GET {{base}}/User/1
+
+
+###
+GET {{authbase}}/token
+
+###
+
+# @name getToken
+POST {{authbase}}/token
+content-type: application/json
+
+{
+    "email": "erkintek@gmail.com",
+    "password": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+###
+GET {{base}}/Tables
+Authorization: Bearer {{getToken.response.body.*}}
+
+
+### @name=Insert
+POST {{base}}/Pages
+content-type: application/json
+
+{ 
+    "url":"yea.osman.com/",
+    "menuPos":3,
+    "status":"Waiting",
+    "projectId":1
+}
+
+
+### @name=Insert2
+POST {{base}}/Logs
+content-type: application/json
+
+{ 
+    "title" :"yea.osman.com/",
+    "createdAt":"2023-06-22 23:33",
+    "menuPos":3,
+    "status":"Waiting",
+    "projectId":1,
+    "f1":"e",
+    "f2":"e",
+    "f3":"e",
+    "f4":"e",
+    "f5":"e"
+}
+
+### @name=Update
+POST {{base}}/Pages
+content-type: application/json
+
+{
+    "id": 16,
+    "url":"yea.osman.com/",
+    "menuPos":1,
+    "status":"Waiting",
+    "projectId":1
+}
+
+
+### @name=Delete
+DELETE  {{base}}/Pages/20
+Authorization: Bearer {{getToken.response.body.*}}
